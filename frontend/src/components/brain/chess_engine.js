@@ -42,13 +42,11 @@ export default function getLegalMoves(board, turn) {
       const moves = getMoves(board, r, c);
 
       for (const m of moves) {
-        // Handle promotion pieces array
         const promotionPieces = Array.isArray(m.promoteTo) 
           ? m.promoteTo 
           : (m.promoteTo ? [m. promoteTo] : [null]);
 
         for (const promoteTo of promotionPieces) {
-          // new move object compatible with your frontend AND minimax: 
           const moveObj = {
             from: { r, c },
             to: { r: m.row, c: m.col },
@@ -57,7 +55,6 @@ export default function getLegalMoves(board, turn) {
             promoteTo:  promoteTo || null
           };
 
-          // simulate move using your makeMove(r1,c1,r2,c2,promoteTo)
           const newBoard = makeMove(
             board,
             r,
@@ -142,15 +139,14 @@ export function evaluateGameResult(board, player) {
  */
 export function evaluateBoard(board) {
     const pieceValues = {
-        'P': 100,   // Pawn
-        'N': 320,   // Knight
-        'B': 330,   // Bishop
-        'R': 500,   // Rook
-        'Q': 900,   // Queen
-        'K': 20000  // King
+        'P': 100,   
+        'N': 320,   
+        'B': 330,   
+        'R': 500,   
+        'Q': 900,   
+        'K': 20000  
     };
 
-    // Position bonus tables for piece placement
     const pawnTable = [
         [0,  0,  0,  0,  0],
         [50, 50, 50, 50, 50],
@@ -245,7 +241,6 @@ export function findBestMove(board, depth, player) {
     let bestScore = player === 'w' ? -Infinity :  Infinity;
 
     for (const move of legalMoves) {
-        // Apply move
         const newBoard = makeMove(
             board,
             move.from.r,
@@ -255,16 +250,14 @@ export function findBestMove(board, depth, player) {
             move.promoteTo
         );
 
-        // Evaluate with minimax
         const score = minimax(
             newBoard,
             depth - 1,
             -Infinity,
             Infinity,
-            player === 'w' ? false : true // Next player is opponent
+            player === 'w' ? false : true 
         );
 
-        // Update best move
         if (player === 'w') {
             if (score > bestScore) {
                 bestScore = score;
@@ -293,12 +286,10 @@ export function findBestMove(board, depth, player) {
 export function minimax(board, depth, alpha, beta, maximizingPlayer) {
     const currentPlayer = maximizingPlayer ? 'w' : 'b';
     
-    // Check for terminal condition
     if (depth === 0) {
         return evaluateBoard(board);
     }
 
-    // Check if game is over
     const result = evaluateGameResult(board, currentPlayer);
     if (result.over) {
         if (result.winner === 'w') {
@@ -330,7 +321,7 @@ export function minimax(board, depth, alpha, beta, maximizingPlayer) {
             alpha = Math.max(alpha, evaluation);
 
             if (beta <= alpha) {
-                break; // Beta cutoff
+                break;
             }
         }
 
@@ -353,7 +344,7 @@ export function minimax(board, depth, alpha, beta, maximizingPlayer) {
             beta = Math.min(beta, evaluation);
 
             if (beta <= alpha) {
-                break; // Alpha cutoff
+                break; 
             }
         }
 

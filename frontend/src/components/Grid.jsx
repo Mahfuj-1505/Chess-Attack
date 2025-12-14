@@ -84,7 +84,7 @@ const Grid = ({ piecesMap, mode = "hvh", botColor = "b", difficulty = "medium", 
       setBoard(newBoard);
       setSelected(null);
       setLegalMoves([]);
-      setLastMove({ from: best.from, to: best.to });
+      setLastMove({ from: { row: best.from.r, col: best.from.c }, to: { row: best.to.r, col: best.to.c } });
       const nextTurn = turn === "w" ? "b" : "w";
       setTurn(nextTurn);
 

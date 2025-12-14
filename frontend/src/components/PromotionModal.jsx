@@ -12,34 +12,85 @@ const PromotionModal = ({ color, options, onSelect, piecesMap, darkMode }) => {
   };
 
   return (
-    <div className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn ${
-      darkMode ? 'bg-black/70' : 'bg-black/60'
-    }`}>
-      <div className={`p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4 transform transition-all duration-300 animate-slideIn ${
-        darkMode ? 'bg-chess-dark-panel border-2 border-chess-dark-border' : 'bg-white'
-      }`}>
-        <h2 className={`text-3xl font-bold text-center mb-6 ${
-          darkMode ? 'text-white' : 'text-gray-900'
-        }`}>
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backdropFilter: 'blur(6px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000
+    }}>
+      <div style={{
+        backgroundColor: darkMode ? '#1E293B' : 'white',
+        border: `2px solid ${darkMode ? '#334155' : '#ccc'}`,
+        borderRadius: '16px',
+        padding: '32px',
+        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
+        maxWidth: '400px',
+        width: '90%'
+      }}>
+        <h2 style={{
+          fontSize: '28px',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginBottom: '24px',
+          color: darkMode ? 'white' : '#333'
+        }}>
           ♟️ Promote Pawn
         </h2>
-        <div className="grid grid-cols-2 gap-4">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '16px'
+        }}>
           {options.map((pieceType) => (
             <button
               key={pieceType}
               onClick={() => onSelect(pieceType)}
-              className={`p-6 rounded-xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center gap-3 ${
-                darkMode 
-                  ? 'bg-chess-dark-border hover:bg-chess-action-primary/30 text-white hover:text-chess-action-primary border border-chess-action-primary/50 hover:border-chess-action-primary' 
-                  : 'bg-gray-50 hover:bg-chess-action-primary hover:text-white text-gray-900'
-              } shadow-lg hover:shadow-xl font-semibold`}
+              style={{
+                padding: '16px',
+                borderRadius: '10px',
+                border: `2px solid ${darkMode ? '#334155' : '#ddd'}`,
+                backgroundColor: darkMode ? '#0F172A' : '#f5f5f5',
+                color: darkMode ? '#e5e7eb' : '#333',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                fontWeight: '600',
+                fontSize: '16px'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = darkMode ? '#1E293B' : '#e8e8e8';
+                e.target.style.borderColor = '#22C55E';
+                e.target.style.color = '#22C55E';
+                e.target.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = darkMode ? '#0F172A' : '#f5f5f5';
+                e.target.style.borderColor = darkMode ? '#334155' : '#ddd';
+                e.target.style.color = darkMode ? '#e5e7eb' : '#333';
+                e.target.style.transform = 'scale(1)';
+              }}
             >
               <img
                 src={pieces[color + pieceType]}
                 alt={pieceNames[pieceType]}
-                className="w-16 h-16 object-contain drop-shadow-lg"
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
+                }}
               />
-              <span className="text-base">{pieceNames[pieceType]}</span>
+              <span>{pieceNames[pieceType]}</span>
             </button>
           ))}
         </div>
