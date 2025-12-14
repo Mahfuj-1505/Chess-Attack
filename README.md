@@ -13,7 +13,6 @@ The AI opponent isn't just making random moves - it's actually thinking several 
 
 ### Game Modes
 - **Human vs AI** - Challenge the computer at different difficulty levels
-- **AI vs AI** - Watch two AI players battle it out (great for testing strategies!)
 - **Human vs Human** - Classic two-player mode on the same device
 
 ### Smart AI Opponent
@@ -24,7 +23,6 @@ The AI opponent isn't just making random moves - it's actually thinking several 
 
 ### User Interface
 - Clean, intuitive React-based interface
-- Drag-and-drop piece movement
 - Visual highlighting of legal moves
 - Real-time move validation
 - Game state indicators (check, checkmate, stalemate)
@@ -137,8 +135,6 @@ Chess-Attack/
 │   │   └── main.jsx                  # Entry point
 │   ├── package.json
 │   └── vite.config.js
-├── CHESS_RULES_GUIDE. md
-├── OPTIMIZATION_GUIDE.md
 └── README.md
 ```
 
