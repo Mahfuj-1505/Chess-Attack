@@ -43,12 +43,13 @@ const PieceSelector = () => {
 
   return (
     <div style={{
+      width : '1200px',
       minHeight: '100vh',
       backgroundColor: '#0F172A',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '20px',
+      padding: '40px',
       fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif'
     }}>
       <div style={{
@@ -96,8 +97,8 @@ const PieceSelector = () => {
           </h2>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '16px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '20px'
           }}>
             {themes.map((t) => {
               const preview = pieceSets[t]?.['wQ'] || pieceSets[t]?.['bQ'];
@@ -112,7 +113,7 @@ const PieceSelector = () => {
                     backgroundColor: selected === t ? '#1E293B' : '#0F172A',
                     color: selected === t ? '#22C55E' : '#9ca3af',
                     fontWeight: '700',
-                    fontSize: '16px',
+                    fontSize: '20px',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     boxShadow: selected === t ? '0 0 24px rgba(34, 197, 94, 0.25)' : 'none',
@@ -144,8 +145,8 @@ const PieceSelector = () => {
                       src={preview}
                       alt={`${t} queen preview`}
                       style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '60px',
+                        height: '60px',
                         objectFit: 'contain',
                         filter: selected === t ? 'none' : 'grayscale(10%)',
                         background: 'transparent'
@@ -184,13 +185,14 @@ const PieceSelector = () => {
                 key={m.id}
                 onClick={() => setMode(m.id)}
                 style={{
+                  marginLeft: '20px',
                   padding: '16px',
                   borderRadius: '10px',
                   border: mode === m.id ? '3px solid #3B82F6' : '2px solid #334155',
                   backgroundColor: mode === m.id ? '#1E293B' : '#0F172A',
                   color: mode === m.id ? '#3B82F6' : '#9ca3af',
                   fontWeight: '600',
-                  fontSize: '15px',
+                  fontSize: '16px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: mode === m.id ? '0 0 20px rgba(59, 130, 246, 0.2)' : 'none',
@@ -243,6 +245,7 @@ const PieceSelector = () => {
                     key={c.id}
                     onClick={() => setBotColor(c.id)}
                     style={{
+                      marginLeft: '20px',
                       padding: '14px 16px',
                       borderRadius: '10px',
                       border: botColor === c.id ? '3px solid #22C55E' : '2px solid #334155',
@@ -296,6 +299,7 @@ const PieceSelector = () => {
                     key={level}
                     onClick={() => setDifficulty(level)}
                     style={{
+                      marginLeft: '20px',
                       padding: '14px 16px',
                       borderRadius: '10px',
                       border: difficulty === level ? '3px solid #EF4444' : '2px solid #334155',
