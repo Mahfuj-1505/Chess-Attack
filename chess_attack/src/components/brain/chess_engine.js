@@ -38,7 +38,6 @@ export default function getLegalMoves(board, turn) {
       if (! piece) continue;
       if (piece[0] !== turn) continue;
 
-      // getMoves returns:  { row, col, capture, promoteTo }
       const moves = getMoves(board, r, c);
 
       for (const m of moves) {
@@ -86,23 +85,12 @@ example object of each move
 }
 */
 
-/**
- * Check if the game is over for a given player
- * @param {Array} board - Current board state
- * @param {string} player - 'w' or 'b'
- * @returns {boolean} - True if game is over (checkmate or stalemate)
- */
 export function isGameOver(board, player) {
     const legalMoves = getLegalMoves(board, player);
     return legalMoves.length === 0;
 }
 
-/**
- * Evaluate the game result
- * @param {Array} board - Current board state
- * @param {string} player - Current player ('w' or 'b')
- * @returns {Object} - { over: boolean, winner: 'w'|'b'|'draw'|null }
- */
+
 export function evaluateGameResult(board, player) {
     const legalMoves = getLegalMoves(board, player);
     
@@ -129,12 +117,7 @@ export function evaluateGameResult(board, player) {
     };
 }
 
-/**
- * Evaluate board position from white's perspective
- * Positive score = good for white, Negative = good for black
- * @param {Array} board - Current board state
- * @returns {number} - Board evaluation score
- */
+
 export function evaluateBoard(board) {
     const pieceValues = {
         'P': 100,   
@@ -219,13 +202,7 @@ export function evaluateBoard(board) {
     return score;
 }
 
-/**
- * Find the best move for the current player using minimax with alpha-beta pruning
- * @param {Array} board - Current board state
- * @param {number} depth - Search depth
- * @param {string} player - 'w' or 'b'
- * @returns {Object|null} - Best move object or null if no moves available
- */
+
 export function findBestMove(board, depth, player) {
     const legalMoves = getLegalMoves(board, player);
     
@@ -270,15 +247,7 @@ export function findBestMove(board, depth, player) {
     return bestMove;
 }
 
-/**
- * Minimax algorithm with alpha-beta pruning
- * @param {Array} board - Current board state
- * @param {number} depth - Remaining search depth
- * @param {number} alpha - Alpha value for pruning
- * @param {number} beta - Beta value for pruning
- * @param {boolean} maximizingPlayer - True if maximizing (white), false if minimizing (black)
- * @returns {number} - Board evaluation score
- */
+
 export function minimax(board, depth, alpha, beta, maximizingPlayer) {
     const currentPlayer = maximizingPlayer ? 'w' : 'b';
     
@@ -348,5 +317,4 @@ export function minimax(board, depth, alpha, beta, maximizingPlayer) {
     }
 }
 
-// Export all functions
 export { initial_board, cloneBoard };
